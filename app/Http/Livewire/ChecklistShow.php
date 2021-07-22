@@ -19,6 +19,7 @@ class ChecklistShow extends Component
             ->whereNotNull('completed_at')
             ->pluck('task_id')
             ->toArray();
+        $this->current_task = NULL;
     }
 
     public function render()
@@ -28,10 +29,23 @@ class ChecklistShow extends Component
 
     public function toggle_task($task_id)
     {
+        // When we click to open any task's description on checklist-show-blade page
         if (in_array($task_id, $this->opened_tasks)) {
             $this->opened_tasks = array_diff($this->opened_tasks, [$task_id]);
         } else {
             $this->opened_tasks[] = $task_id;
+
+            $this->current_task = Task::where('user_id', auth()->id())
+                ->where('task_id', $task_id)
+                ->first();
+
+            if (!$this->current_task) {
+                $task = Task::find($task_id);
+                $this->current_task = $task->replicate();
+                $this->current_task['user_id'] = auth()->id();
+                $this->current_task['task_id'] = $task_id;
+                $this->current_task->save();
+            }
         }
 
 
@@ -49,10 +63,9 @@ class ChecklistShow extends Component
                     $user_task->update(['completed_at' => now()]);
                     $this->completed_tasks[] = $task_id;
                     $this->emit('task_complete', $task_id, $task->checklist_id);
-                }
-                else{
+                } else {
                     $this->completed_tasks[] = $task_id;
-                    $user_task->forceDelete();
+                    $user_task->update(['completed_at' => NULL]);
                     $this->emit('task_complete', $task_id, $task->checklist_id, -1);
                 }
             } else {
