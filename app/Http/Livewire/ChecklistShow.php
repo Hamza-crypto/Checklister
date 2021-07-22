@@ -10,6 +10,7 @@ class ChecklistShow extends Component
     public $checklist;
     public $opened_tasks = [];
     public $completed_tasks = [];
+    public ?Task $current_task;
 
     public function mount()
     {

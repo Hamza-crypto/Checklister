@@ -5,6 +5,27 @@
         </a>
 
         <ul class="sidebar-nav">
+            <li class="sidebar-item">
+                <a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="sun"></i>
+                    <span class="align-middle">My Day</span>
+                    <span class="badge badge-sidebar-primary">5</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="star"></i>
+                    <span class="align-middle">Important</span>
+                    <span class="badge badge-sidebar-primary">5</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="calendar"></i>
+                    <span class="align-middle">Planned</span>
+                    <span class="badge badge-sidebar-primary">8</span>
+                </a>
+            </li>
             <li class="sidebar-header">
                 General
             </li>

@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="progress progress-sm shadow-sm mb-1">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ ($checklists->sum('user_tasks_count')  / $checklists->sum('tasks_count') )*100 }}%"></div>
+                        <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: {{ ($checklists->sum('user_tasks_count')  / $checklists->sum('tasks_count') )*100 }}%"></div>
                     </div>
                 </div>
             </div>
